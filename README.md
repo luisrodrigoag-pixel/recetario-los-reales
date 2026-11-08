@@ -10,9 +10,14 @@ poder corregirlas y agregar más sin pelearse con ningún programa.
 
 ## Qué hay
 
-| Sección | Recetas |
+| | |
 | --- | --- |
-| [Con aceite MCT](recetas/mct) | 9 |
+| [Recetas de la casa](recetas/casa) | 12 vegetarianas, con su estimado por porción y qué tan laboriosa es cada una |
+| [Recetas con aceite MCT](recetas/mct) | 9, empezando por cómo se usa el aceite |
+| [Dónde comer](lugares) | 81 lugares de la lista de Robin Food, por ciudad |
+
+En la página las recetas y los lugares están en dos pestañas, y cada lugar lleva su enlace a
+Google Maps para abrirlo desde el celular.
 
 ## Cómo se agrega una receta
 
@@ -54,3 +59,28 @@ de `recetas/` y ponerle su nombre bonito en el diccionario `SECCIONES` de `const
 La parte de **Notas** es la que hace que una receta sirva la segunda vez: por qué el plátano
 va bien maduro, por qué el agua del hummus va fría, por qué el aceite entra antes que el
 jitomate. Si al cocinar descubren algo, vale la pena anotarlo ahí.
+
+## Dónde comer
+
+La pestaña de lugares sale de `lugares/<ciudad>.md`, con esta forma:
+
+```markdown
+# Puebla
+
+## 🌮 Tacos y antojitos
+- Nombre del lugar — dirección
+```
+
+Es la lista de Robin Food que Luis Ro tiene en sus notas. Si se agrega un lugar ahí, hay que
+agregarlo aquí también (o pedírmelo y yo lo paso).
+
+## Tito
+
+El dibujo del encabezado es Tito, el perro de la casa, ilustrado en vectores a partir de su
+foto con `dibujar_tito.py`. No es una foto convertida: son formas dibujadas a mano, con sus
+colores y sus proporciones —volpino canela, melena crema, orejas paradas, cola en pompón y su
+pechera rosa—. Para cambiarlo, se edita ese script y se vuelve a correr:
+
+```bash
+python3 -I dibujar_tito.py && python3 -I construir.py
+```
