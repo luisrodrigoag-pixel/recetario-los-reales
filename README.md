@@ -16,8 +16,20 @@ poder corregirlas y agregar más sin pelearse con ningún programa.
 | [Recetas con aceite MCT](recetas/mct) | 9, empezando por cómo se usa el aceite |
 | [Dónde comer](lugares) | 81 lugares de la lista de Robin Food, por ciudad |
 
-En la página las recetas y los lugares están en dos pestañas, y cada lugar lleva su enlace a
-Google Maps para abrirlo desde el celular.
+La página tiene tres pestañas:
+
+- **Recetas.** Cada una con su etiqueta de qué tan laboriosa es, cuánto trabajo activo pide y
+  las calorías por porción.
+- **Mi lista.** Se marcan las recetas con el botón **+** y se arma la lista del súper, agrupada
+  en las mismas categorías de las listas de los lunes (proteínas, cereales, frutas, lácteos,
+  grasas, verduras y despensa), diciendo de qué receta sale cada cosa. Se va tachando en el
+  súper y se guarda en ese teléfono. **No se suman cantidades de recetas distintas** —media
+  taza de una y dos cucharadas de otra no se pueden sumar sin inventar—, así que cada renglón
+  conserva su medida.
+- **Dónde comer.** Los lugares por ciudad, cada uno con su enlace a Google Maps, y un
+  formulario para agregar uno nuevo: se escribe el nombre, se busca solo en el mapa abierto
+  para traer la dirección y queda guardado en el teléfono hasta que se lo manden a Lulu, que
+  lo verifica y lo sube a la lista de todos.
 
 ## Cómo se agrega una receta
 
