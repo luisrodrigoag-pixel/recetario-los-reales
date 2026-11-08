@@ -210,8 +210,15 @@ def lugares():
 
 
 def mapa(nombre, donde, ciudad):
-    """Enlace a Google Maps: en el celular abre la app directo."""
-    q = urllib.parse.quote(f"{nombre} {donde} {ciudad}".strip())
+    """Enlace a Google Maps: en el celular abre la app directo.
+
+    Lo que va entre paréntesis en el nombre es para nosotros —«(jazz kissa, se habla
+    quedito)»— y mandárselo a Maps solo ensucia la búsqueda, así que no entra. Lo que
+    va después de un «·» en la dirección son horarios y teléfonos: tampoco.
+    """
+    limpio = re.sub(r"\s*\(.*?\)", "", nombre).strip()
+    sitio = donde.split("·")[0].strip()
+    q = urllib.parse.quote(f"{limpio} {sitio} {ciudad}".strip())
     return f"https://www.google.com/maps/search/?api=1&query={q}"
 
 
