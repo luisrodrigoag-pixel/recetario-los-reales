@@ -12,9 +12,17 @@ poder corregirlas y agregar más sin pelearse con ningún programa.
 
 | | |
 | --- | --- |
-| [Recetas de la casa](recetas/casa) | 12 vegetarianas, con su estimado por porción y qué tan laboriosa es cada una |
-| [Recetas con aceite MCT](recetas/mct) | 9, empezando por cómo se usa el aceite |
+| [Desayunos](recetas/desayunos) | 3 |
+| [De diario](recetas/diario) | 4 — pollo, pescado, tinga y tostadas de atún |
+| [Sopas y caldos](recetas/sopas) | 2 |
+| [Verduras y ensaladas](recetas/casa) | 12 vegetarianas |
+| [Postres y antojos](recetas/postres) | 3 |
+| [Con aceite MCT](recetas/mct) | 9, empezando por cómo se usa el aceite |
 | [Dónde comer](lugares) | 81 lugares de la lista de Robin Food, por ciudad |
+
+Cada receta trae su estimado por porción y qué tan laboriosa es. El orden de las secciones lo
+fija el diccionario `SECCIONES` de `construir.py`; una carpeta que no esté ahí sale al final
+con su propio nombre, así que agregar una sección nunca rompe la página.
 
 La página tiene tres pestañas:
 
@@ -95,4 +103,18 @@ pechera rosa—. Para cambiarlo, se edita ese script y se vuelve a correr:
 
 ```bash
 python3 -I dibujar_tito.py && python3 -I construir.py
+```
+
+## Como app en el teléfono
+
+Al abrir el enlace en el iPhone, *Compartir › Agregar a pantalla de inicio*: queda con el logo
+y abre sin la barra del navegador, como una app. Eso lo dan `manifest.webmanifest` y las metas
+que escribe `construir.py`.
+
+**⚠️ iOS no acepta SVG en `apple-touch-icon`.** Por eso el logo se genera también en PNG:
+`dibujar_logo.py` dibuja el SVG —Tito con gorro de chef sobre el azulejo de talavera— y lo
+rasteriza con Chrome a 180, 192 y 512 px. Si se cambia el logo:
+
+```bash
+python3 -I dibujar_logo.py && python3 -I construir.py
 ```

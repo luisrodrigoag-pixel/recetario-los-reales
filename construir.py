@@ -23,8 +23,12 @@ import urllib.parse
 
 RAIZ = os.path.dirname(os.path.abspath(__file__))
 
-# Cómo se llama cada carpeta en la página. Lo que no esté aquí sale con su propio nombre.
-SECCIONES = {"mct": "Con aceite MCT", "casa": "De la casa"}
+# Cómo se llama cada carpeta en la página y en qué orden sale. Lo que no esté aquí va al
+# final, con el nombre de su carpeta: así, agregar una sección nueva nunca rompe la página.
+SECCIONES = {"desayunos": "Desayunos", "diario": "De diario", "sopas": "Sopas y caldos",
+             "casa": "Verduras y ensaladas", "postres": "Postres y antojos",
+             "mct": "Con aceite MCT"}
+ORDEN = list(SECCIONES)
 
 # Las mismas categorías de las listas del súper que mando los lunes, en el mismo orden.
 # El orden importa dos veces: es el orden en que se recorre el súper y el orden en que se
@@ -138,10 +142,11 @@ def recetas():
     todo = []
     if not os.path.isdir(base):
         return todo
-    for carpeta in sorted(os.listdir(base)):
+    carpetas = [c for c in ORDEN if os.path.isdir(os.path.join(base, c))]
+    carpetas += [c for c in sorted(os.listdir(base))
+                 if os.path.isdir(os.path.join(base, c)) and c not in carpetas]
+    for carpeta in carpetas:
         ruta = os.path.join(base, carpeta)
-        if not os.path.isdir(ruta):
-            continue
         fichas = []
         for archivo in sorted(os.listdir(ruta)):
             if not archivo.endswith(".md"):
@@ -645,8 +650,16 @@ def main():
          "<meta name='description' content='Las recetas de la casa, la lista del súper y los "
          "lugares de Robin Food.'>",
          "<meta name='theme-color' content='#2B4C8C'>",
-         "<link rel='icon' href='assets/tito-cara.svg'>",
-         "<link rel='apple-touch-icon' href='assets/tito-cara.svg'>",
+         # Para que al guardarla en la pantalla de inicio abra como app y no como pestaña.
+         # ⚠️ iOS NO acepta SVG en apple-touch-icon: ahí va el PNG de 180 sí o sí.
+         "<link rel='manifest' href='manifest.webmanifest'>",
+         "<link rel='icon' href='assets/logo.svg'>",
+         "<link rel='icon' type='image/png' sizes='192x192' href='assets/logo-192.png'>",
+         "<link rel='apple-touch-icon' href='assets/logo-180.png'>",
+         "<meta name='apple-mobile-web-app-capable' content='yes'>",
+         "<meta name='mobile-web-app-capable' content='yes'>",
+         "<meta name='apple-mobile-web-app-title' content='Recetario'>",
+         "<meta name='apple-mobile-web-app-status-bar-style' content='black-translucent'>",
          f"<style>{CSS}</style></head><body>",
          "<header><div class='wrap'><div class='txt'>",
          "<div class='eyebrow'>Los Reales</div><h1 class='serif'>Recetario de la casa</h1>",
@@ -671,8 +684,11 @@ def main():
                 f"<details class='receta' id='{f['id']}' style='--i:{min(i, 8)}'><summary>"
                 f"<div class='info'><h3>{html.escape(f['titulo'])}</h3>"
                 f"<div class='etq'>{etq}</div></div>"
-                f"<button class='add' data-id='{f['id']}' aria-pressed='false' "
-                f"title='Agregar a mi lista del súper'>+</button></summary>"
+                # La ficha de cómo usar el aceite no es una receta: no lleva botón de
+                # agregar, porque no tiene nada que mandar a la lista del súper.
+                + (f"<button class='add' data-id='{f['id']}' aria-pressed='false' "
+                   f"title='Agregar a mi lista del súper'>+</button>" if f["ing"] else "")
+                + "</summary>"
                 f"<div class='cuerpo'>{f['html']}</div></details>")
 
     # Mi lista del súper
