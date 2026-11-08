@@ -59,8 +59,17 @@ def sin_acentos(t):
     return unicodedata.normalize("NFKD", t).encode("ascii", "ignore").decode().lower()
 
 
+# En el súper, el caldo está en el pasillo de la despensa aunque diga "de pollo", y el pan
+# molido no es pan. Se revisan antes que las categorías, porque si no, la palabra manda.
+EXCEPCIONES = [("caldo", CAJON), ("pan molido", CAJON), ("panko", CAJON),
+               ("fecula", CAJON), ("salsa de soya", CAJON), ("leche evaporada", "🥛 Lácteos")]
+
+
 def categoria_de(ingrediente):
     t = sin_acentos(ingrediente)
+    for clave, destino in EXCEPCIONES:
+        if clave in t:
+            return destino
     for nombre, claves in CATEGORIAS:
         for k in claves:
             if re.search(r"\b" + re.escape(k), t):

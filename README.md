@@ -13,7 +13,7 @@ poder corregirlas y agregar más sin pelearse con ningún programa.
 | | |
 | --- | --- |
 | [Desayunos](recetas/desayunos) | 3 |
-| [De diario](recetas/diario) | 4 — pollo, pescado, tinga y tostadas de atún |
+| [De diario](recetas/diario) | 12 — pollo, pescado, res, albóndigas, milanesas y el arroz rojo |
 | [Sopas y caldos](recetas/sopas) | 2 |
 | [Verduras y ensaladas](recetas/casa) | 12 vegetarianas |
 | [Postres y antojos](recetas/postres) | 3 |
